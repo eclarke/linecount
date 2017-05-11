@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Erik Clarke <erikclarke@fastmail.com>"]
 license = "GPL-3"
 description = "Quickly count lines in a file"
+repository = "https://github.com/eclarke/linecount"
 
 [dependencies]
 
