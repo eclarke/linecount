@@ -1,0 +1,10 @@
+[package]
+name = "linecount"
+version = "0.1.0"
+authors = ["Erik Clarke <erikclarke@fastmail.com>"]
+
+[dependencies]
+
+[[bin]]
+name = "lc"
+path = "src/lc.rs"
