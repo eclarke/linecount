@@ -11,27 +11,28 @@
 use std::io;
 use std::io::{BufRead, BufReader};
 
-const LF: u8 = '\n' as u8;
+extern crate bytecount;
 
 /// Counts lines in the source `handle`. 
 /// 
 /// # Examples
 /// ```
-/// use linecount::count_lines
-/// let lines: usize = count_lines(std::fs::File.open("foo.txt").unwrap()).unwrap()
+/// use linecount::count_lines;
+/// let lines: usize = count_lines(std::fs::File::open("Cargo.toml").unwrap()).unwrap();
 /// ```
 pub fn count_lines<R: io::Read>(handle: R) -> Result<usize, io::Error> {
-    let mut reader = BufReader::new(handle);
+    let mut reader = BufReader::with_capacity(1024 * 32, handle);
     let mut count = 0;
-    let mut line: Vec<u8> = Vec::new();
-    while match reader.read_until(LF, &mut line) {
-        Ok(n) if n > 0 => true,
-        Err(e) => return Err(e),
-        _ => false,
-    } {
-        if *line.last().unwrap() == LF {
-            count += 1;
+    loop {
+        let len = {
+            let buf = reader.fill_buf()?;
+            if buf.is_empty() {
+                break;
+            }
+            count += bytecount::count(&buf, b'\n');
+            buf.len()
         };
+        reader.consume(len);
     }
     Ok(count)
 }

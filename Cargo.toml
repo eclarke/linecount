@@ -1,12 +1,17 @@
 [package]
 name = "linecount"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Erik Clarke <erikclarke@fastmail.com>"]
 license = "GPL-3"
 description = "Quickly count lines in a file"
 repository = "https://github.com/eclarke/linecount"
 
 [dependencies]
+bytecount = "0.4.0"
+
+[features]
+runtime-dispatch-simd = ["bytecount/runtime-dispatch-simd"]
+generic-simd = ["bytecount/generic-simd"]
 
 [[bin]]
 name = "lc"
