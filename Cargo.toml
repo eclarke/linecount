@@ -7,6 +7,11 @@ description = "Quickly count lines in a file"
 repository = "https://github.com/eclarke/linecount"
 
 [dependencies]
+bytecount = "0.4.0"
+
+[features]
+runtime-dispatch-simd = ["bytecount/runtime-dispatch-simd"]
+generic-simd = ["bytecount/generic-simd"]
 
 [[bin]]
 name = "lc"
