@@ -17,8 +17,8 @@ const LF: u8 = '\n' as u8;
 /// 
 /// # Examples
 /// ```
-/// use linecount::count_lines
-/// let lines: usize = count_lines(std::fs::File.open("foo.txt").unwrap()).unwrap()
+/// use linecount::count_lines;
+/// let lines: usize = count_lines(std::fs::File::open("Cargo.toml").unwrap()).unwrap();
 /// ```
 pub fn count_lines<R: io::Read>(handle: R) -> Result<usize, io::Error> {
     let mut reader = BufReader::new(handle);
