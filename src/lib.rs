@@ -11,7 +11,7 @@
 use std::io;
 use std::io::{BufRead, BufReader};
 
-const LF: u8 = '\n' as u8;
+const LF: u8 = b'\n';
 
 /// Counts lines in the source `handle`. 
 /// 
